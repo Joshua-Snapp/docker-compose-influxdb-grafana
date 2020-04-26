@@ -1,5 +1,14 @@
 version: '2'
 services:
+  telegraf:
+    image: telegraf
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+  mqtt:
+    image: eclipse-mosquitto
+    ports:
+      - '1883:1883'
+      - '9001:9001'
   influxdb:
     image: influxdb:latest
     ports:
