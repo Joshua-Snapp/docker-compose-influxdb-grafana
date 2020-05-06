@@ -4,11 +4,13 @@ services:
     image: telegraf
     volumes:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    restart: unless-stopped
   mqtt:
     image: eclipse-mosquitto
     ports:
       - '1883:1883'
       - '9001:9001'
+    restart: unless-stopped
   influxdb:
     image: influxdb:latest
     ports:
@@ -19,6 +21,7 @@ services:
       - INFLUXDB_DB=iot
       - INFLUXDB_ADMIN_USER=${INFLUXDB_USERNAME}
       - INFLUXDB_ADMIN_PASSWORD=${INFLUXDB_PASSWORD}
+    restart: unless-stopped
   chronograf:
     image: chronograf:latest
     ports:
@@ -31,6 +34,7 @@ services:
       - INFLUXDB_URL=http://influxdb:8086
       - INFLUXDB_USERNAME=${INFLUXDB_USERNAME}
       - INFLUXDB_PASSWORD=${INFLUXDB_PASSWORD}
+    restart: unless-stopped
   grafana:
     image: grafana/grafana:latest
     ports:
@@ -43,6 +47,7 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    restart: unless-stopped
 volumes:
   influxdb-storage:
   chronograf-storage:
