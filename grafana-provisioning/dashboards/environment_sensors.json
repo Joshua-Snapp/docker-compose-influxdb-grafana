@@ -2,6 +2,7 @@
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:7",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -15,7 +16,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 2,
-  "id": 1,
   "links": [],
   "panels": [
     {
@@ -28,6 +28,7 @@
         "y": 0
       },
       "id": 8,
+      "interval": "",
       "links": [],
       "options": {
         "fieldOptions": {
@@ -58,7 +59,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.1",
+      "pluginVersion": "6.7.3",
       "targets": [
         {
           "alias": "garage exterior",
@@ -101,7 +102,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "topic",
+              "operator": "=",
+              "value": "tele/garage/SENSOR"
+            }
+          ]
         },
         {
           "alias": "garage interior",
@@ -145,6 +152,55 @@
             ]
           ],
           "tags": []
+        },
+        {
+          "alias": "home interior",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "topic"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "mqtt_consumer",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "BME280_Temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "topic",
+              "operator": "=",
+              "value": "tele/interior/SENSOR"
+            }
+          ]
         }
       ],
       "timeFrom": null,
@@ -169,6 +225,7 @@
       },
       "hiddenSeries": false,
       "id": 7,
+      "interval": "",
       "legend": {
         "avg": false,
         "current": false,
@@ -236,7 +293,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "topic",
+              "operator": "=",
+              "value": "tele/garage/SENSOR"
+            }
+          ]
         },
         {
           "alias": "garage interior",
@@ -280,6 +343,55 @@
             ]
           ],
           "tags": []
+        },
+        {
+          "alias": "home interior",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "topic"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "mqtt_consumer",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "BME280_Temperature"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "topic",
+              "operator": "=",
+              "value": "tele/interior/SENSOR"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -411,7 +523,68 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "topic",
+              "operator": "=",
+              "value": "tele/garage/SENSOR"
+            }
+          ]
+        },
+        {
+          "alias": "home interior",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "topic"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "mqtt_consumer",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "BME280_Pressure"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "*0.029529983071445"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "topic",
+              "operator": "=",
+              "value": "tele/interior/SENSOR"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -537,7 +710,62 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "topic",
+              "operator": "=",
+              "value": "tele/garage/SENSOR"
+            }
+          ]
+        },
+        {
+          "alias": "home interior",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "topic"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "mqtt_consumer",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "BME280_Humidity"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "topic",
+              "operator": "=",
+              "value": "tele/interior/SENSOR"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -597,6 +825,7 @@
       },
       "hiddenSeries": false,
       "id": 6,
+      "interval": "",
       "legend": {
         "avg": false,
         "current": false,
@@ -662,7 +891,62 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "topic",
+              "operator": "=",
+              "value": "tele/garage/SENSOR"
+            }
+          ]
+        },
+        {
+          "alias": "home interior",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "topic"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "mqtt_consumer",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "BME280_DewPoint"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "topic",
+              "operator": "=",
+              "value": "tele/interior/SENSOR"
+            }
+          ]
         }
       ],
       "thresholds": [],
@@ -738,5 +1022,5 @@
   "variables": {
     "list": []
   },
-  "version": 9
+  "version": 14
 }
